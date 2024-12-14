@@ -16,9 +16,6 @@ data = load_GSS()  # e.g., includes age, income, health status, etc.
 # Introduce 10% missing data randomly for testing
 data_with_missing = mask_MCAR(X=data, mask_fraction=.1, seed=101)
 
-# Convert data_with_missing (NumPy array) back to DataFrame
-data_with_missing_df = pd.DataFrame(data_with_missing, columns=data.columns)
-
 # Impute missing data using Gaussian Copula
 model = GaussianCopula(verbose=1)
 imputed_data = model.fit_transform(X=data_with_missing)
